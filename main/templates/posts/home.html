@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+
+
+<!-- {% block header %}
+    {% include 'inc/header_not_logged.html' %}
+{% endblock %} -->
+
+
+{% block content %}
+    
+    {% for post in posts %}
+    
+    <div class="block">
+      <div class="card" style="background-color: rgb(187, 187, 187);
+                               margin-top: 20px;
+                               margin-bottom: 30px;
+                               /* margin-right: 40%; */">
+        <div class="card-content">
+        <a href="{% url 'profile' post.profile.id %}">
+            <table>
+                <tr>
+                  <td>
+                    <div class="image is-32x32">
+                    {% if post.profile.avatar %}
+                      <img class="is-rounded" 
+                        src="/media/{{post.profile.avatar}}" 
+                        alt="Placeholder image">
+                    {% else %}
+                      <img class="is-rounded" 
+                        src="https://miamistonesource.com/wp-content/uploads/2018/05/no-avatar-25359d55aa3c93ab3466622fd2ce712d1.jpg" 
+                        alt="Placeholder image">
+                    {% endif %}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="text" style="margin-left: 10px; margin-top: 3px;">
+                      <p>
+                        {{ post.profile.nickname }}
+                      </p>
+                    </div>
+                  </td>
+                </tr>
+            </table>
+        </a>
+            <hr style="background-color: rgb(45, 44, 44);">
+
+
+            <table>
+                <tr>
+                    <td>
+                        <div class="media">
+                        <div class="media-left">
+                            <!-- <figure class="image is-4by3"> -->
+                            <div class="box">
+                            <img src="/media/{{post.image}}" 
+                                alt="Placeholder"
+                                style="border-radius: 5%;">
+                            </div>
+                            <!-- </figure> -->
+                        </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="text">
+                            <p>
+                                {{ post.description }}
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <form method="update">
+              <button type="submit" class="button"
+                        style="background-color: rgba(0, 0, 0, 0);
+                            border: none;
+                            font-size: 20px;
+                            ">
+                <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
+                <p style="margin-left: 5px;">
+                    {{ post.likes }}
+                </p>
+              </button>
+              </form>
+            <br>
+            <p class="card-text">{{post.created_at |date:"H:i d-m-Y"}}</p>
+            
+          </div>
+      </div>
+    </div>
+
+    {% endfor %}
+
+{% endblock %}
+
+{% block styles %}
+    <style>
+
+    .box {
+        position: relative;
+        overflow:hidden;
+        background-color: rgb(187, 187, 187);
+        border-radius: 5%;
+        width:250px;
+        height:250px;
+    }
+
+    .box img {
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+        width:250px;
+        height:250px;
+        object-fit:cover;
+    }
+    
+    .container .thumbs-up-regular {
+        position: absolute;
+        animation: keyframes-fill .5s;
+    }
+    
+    
+    </style>
+{% endblock %}

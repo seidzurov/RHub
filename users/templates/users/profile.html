@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+
+
+{% block header %}
+    {% include 'inc/header_not_logged.html' %}
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="block">
+      <div class="card" style="background-color: rgb(201, 201, 201); margin-top: 15px;">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-128x128">
+                {% if profile.avatar %}
+                    <img class="is-rounded" 
+                        src="/media/{{profile.avatar}}" 
+                        alt="Avatar">
+                {% else %}
+                    <img class="is-rounded" 
+                        src="https://miamistonesource.com/wp-content/uploads/2018/05/no-avatar-25359d55aa3c93ab3466622fd2ce712d1.jpg" 
+                        alt="Avatar">
+                {% endif %}
+              </figure>
+            </div>
+              <div class="media-content">
+                <p class="title is-2 has-text-info">
+                    {{profile.nickname}}
+                </p>
+                <p class="subtitle is-4">
+                    @{{profile.user}}
+                </p>
+                <a href="#">
+                  <p class="subtitle is-4">
+                    {{ followers_count }} subscribers
+                  </p>
+                </a>
+                <a href="#">
+                  <p class="subtitle is-4">
+                    {{ follows_count }} subscribes
+                  </p>
+                </a>
+                <br>
+                {% if profile.bio %}
+                <p class="subtitle">
+                    {{profile.bio}}
+                </p>
+                {% else %}
+                <p class="subtitle">
+                    No bio
+                </p>
+                {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

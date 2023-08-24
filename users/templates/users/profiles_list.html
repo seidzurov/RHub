@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+
+
+{% block header %}
+    {% include 'inc/header_not_logged.html' %}
+{% endblock %}
+
+
+{% block content %}
+
+
+  <div class="column">
+
+    {% for profile in profiles %}
+
+    <div class="block" style="margin-block-end: 0px;">
+      <div class="card" style="background-color: rgb(187, 187, 187);">
+        <a href="{% url 'profile' profile.id %}">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-left">
+                <figure class="image is-48x48">
+                  {% if profile.avatar %}
+                    <img class="is-rounded"
+                         src="/media/{{profile.avatar}}"
+                         alt="Placeholder">
+                  {% else %}
+                    <img src="https://miamistonesource.com/wp-content/uploads/2018/05/no-avatar-25359d55aa3c93ab3466622fd2ce712d1.jpg" 
+                         alt="Placeholder">
+                  {% endif %}
+                </figure>
+              </div>
+              <div class="media-content">
+                <p class="title is-4">
+                  {{ profile.nickname }}
+                </p>
+                <p class="subtitle is-6">
+                  @{{ profile.user|lower }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <br>
+
+    {% endfor %}
+  
+</div>
+
+{% endblock content %}
